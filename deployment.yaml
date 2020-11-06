@@ -1,0 +1,37 @@
+appVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-notifier
+  labels:
+    app: keycloak-notifier
+spec:
+  selector:
+    matchLabels:
+      app: keycloak-notifier
+  template:
+    metadata:
+      labels:
+        app: keycloak-notifier
+    spec:
+      containers:
+      - name: notifier
+        image: nimbus16.llnl.gov:8443/public/keycloak-notifier:1.0.0
+        env:
+        - name: REGISTER_INTERVAL
+          value: '3600'
+        - name: PENDING_INTERVAL
+          value: '30'
+        - name: KEYCLOAK_URL
+          value: ''
+        - name: KEYCLOAK_REALM
+          value: ''
+        - name: KEYCLOAK_ROLE
+          value: ''
+        - name: KEYCLOAK_CLIENT_ID
+          value: ''
+        - name: KEYCLOAK_CLIENT_SECRET
+          value: ''
+        - name: SLACK_CHANNEL
+          value: ''
+        - name: SLACK_API_TOKEN
+          value: ''
